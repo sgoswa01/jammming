@@ -14,8 +14,8 @@ const Spotify = {
       let urlExpirationTime = window.location.href.match(/expires_in=([^&]*)/);
 
       if (urlAccessToken && urlExpirationTime) {
-        accessToken = urlAccessToken;
-        let expirationTime = urlExpirationTime;
+        accessToken = urlAccessToken[1];
+        let expirationTime = urlExpirationTime[1];
         window.setTimeout(() => accessToken = '', expirationTime * 1000);
         window.history.pushState('Access Token', null, '/');
       } else {
@@ -46,7 +46,7 @@ const Spotify = {
   },
 
   savePlaylist(playlistName, playlistTracks) {
-    if (!playlistName && !playlistTracks) {
+    if (!playlistName || !playlistTracks) {
       return
     } else {
       let userId;
