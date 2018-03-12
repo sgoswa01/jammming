@@ -2,8 +2,8 @@ import React from 'react';
 
 let accessToken;
 let clientId = '8ce0a00bc9a943a48d91fe4e6943d8a2';
-let redirectUri = 'https://Sophia_Jammming12.surge.sh';
-let redirectUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`
+let redirectUri = 'confused-earth.surge.sh';
+let redirectUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
 
 const Spotify = {
   getAccessToken() {
@@ -26,6 +26,7 @@ const Spotify = {
 
   search(term) {
     const searchUrl = `https://api.spotify.com/v1/search?type=track&q=${term}`
+    const accessToken = Spotify.getAccessToken();
 
     return fetch(searchUrl, {
       headers: {Authorization: `Bearer ${accessToken}`}
@@ -52,7 +53,6 @@ const Spotify = {
       let userId;
       let playlistId;
       const headers = {Authorization: `Bearer ${accessToken}`};
-      const accessToken = accessToken;
       let spotifyUrl = 'https://api.spotify.com/v1/me';
 
       return fetch(spotifyUrl, {headers: headers}).then(response => response.json()).then(jsonResponse => userId = jsonResponse.id).then(() => {
