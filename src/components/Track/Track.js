@@ -10,7 +10,7 @@ class Track extends React.Component {
   }
 
   renderAction() {
-    if (this.props.isRemoval) {
+    if (this.props.isRemoval === true) {
       return (<a
         id={this.props.track.key}
         className="Track-action"
