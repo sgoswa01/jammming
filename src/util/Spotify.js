@@ -2,7 +2,7 @@ import React from 'react';
 
 let accessToken;
 let clientId = '8ce0a00bc9a943a48d91fe4e6943d8a2';
-let redirectUri = 'http://confused-earth.surge.sh';
+let redirectUri = 'http//disastrous-flag.surge.sh';
 let redirectUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`
 
 const Spotify = {
@@ -14,10 +14,11 @@ const Spotify = {
       let urlExpirationTime = window.location.href.match(/expires_in=([^&]*)/);
 
       if (urlAccessToken && urlExpirationTime) {
-        accessToken = Number(urlAccessToken[1]);
-        let expirationTime = urlExpirationTime[1];
+        accessToken = urlAccessToken[1];
+        let expirationTime = Number(urlExpirationTime[1]);
         window.setTimeout(() => accessToken = '', expirationTime * 1000);
         window.history.pushState('Access Token', null, '/');
+        return accessToken;
       } else {
         window.location = redirectUrl;
       }
@@ -27,6 +28,7 @@ const Spotify = {
   search(term) {
     const searchUrl = `https://api.spotify.com/v1/search?type=track&q=${term}`
     const accessToken = Spotify.getAccessToken();
+    console.log(`My search token: ${accessToken}`);
 
     return fetch(searchUrl, {
       headers: {Authorization: `Bearer ${accessToken}`}
