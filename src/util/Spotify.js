@@ -2,7 +2,7 @@ import React from 'react';
 
 let accessToken;
 let clientId = '8ce0a00bc9a943a48d91fe4e6943d8a2';
-let redirectUri = 'http//disastrous-flag.surge.sh';
+let redirectUri = 'http://disastrous-flag.surge.sh';
 let redirectUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`
 
 const Spotify = {
